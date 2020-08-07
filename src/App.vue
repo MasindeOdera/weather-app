@@ -39,6 +39,10 @@ export default {
     title: 'Weather App',
     titleTemplate: '%s | Type in a location to get a weather forecast.',
     meta: [
+      {
+        property: 'Description',
+        content: 'Type in a location to get a weather forecast.',
+      },
       { charset: 'utf-8' },
       { name: 'description', content: 'Type in a location to get a weather forecast.' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' }
