@@ -24,6 +24,7 @@
           <div class="weather">{{ weather.weather[0].main }}</div>
           <div class="feels">Max: {{ Math.round(weather.main.temp_max) }}°c</div>
           <div class="feels">Min: {{ Math.round(weather.main.temp_min) }}°c</div>
+          <div class="hint">If you are looking for another <b>{{ weather.name }}</b>, try adding a comma followed by the country code.</div>
         </div>
       </div>
     </main>
@@ -143,7 +144,7 @@ main {
   text-shadow: 1px 3px rgba(0,0,0,0.25);
 }
 
-.location-box .date, .feels {
+.location-box .date, .feels, .hint {
   color: #FFF;
   font-size: 20px;
   font-weight: 300;
