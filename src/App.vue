@@ -24,7 +24,7 @@
           <div class="weather">{{ weather.weather[0].main }}</div>
           <div class="feels">Max: {{ Math.round(weather.main.temp_max) }}°c</div>
           <div class="feels">Min: {{ Math.round(weather.main.temp_min) }}°c</div>
-          <div class="hint">Wrong <b>{{ weather.name }}</b>? Add a comma followed by the country code.</div>
+          <div class="hint">Searching for another <b>{{ weather.name }}</b>? Add a comma followed by the country code.</div>
         </div>
       </div>
     </main>
@@ -35,6 +35,15 @@
 
 export default {
   name: 'App',
+  metaInfo: {
+    title: 'Weather App',
+    titleTemplate: '%s | vue-meta Example App',
+    meta: [
+      { charset: 'utf-8' },
+      { name: 'description', content: 'Testing 1,2,3' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+    ]
+  },
   data() {
     return {
       api_key: '2dc9abfe077c677cb92a5afcea396764',
