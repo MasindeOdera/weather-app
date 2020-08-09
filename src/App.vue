@@ -13,6 +13,9 @@
         />
       </div>
 
+      <div class="error" v-if="typeof error != 'undefined'">{{ error }}</div>
+      <div class="suggestion" v-if="error.length > 0">"Was there a typo?"</div>
+
       <div class="weather-wrap" v-if="typeof weather.main != 'undefined'">
         <div class="location-box">
           <div class="location">{{ weather.name }}, {{ weather.sys.country }}</div>
@@ -35,25 +38,13 @@
 
 export default {
   name: 'App',
-  metaInfo: {
-    title: 'Weather App',
-    titleTemplate: '%s | Type in a location to get a weather forecast.',
-    meta: [
-      {
-        property: 'Description',
-        content: 'Type in a location to get a weather forecast.',
-      },
-      { charset: 'utf-8' },
-      { name: 'description', content: 'Type in a location to get a weather forecast.' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' }
-    ]
-  },
   data() {
     return {
       api_key: '2dc9abfe077c677cb92a5afcea396764',
       url_base: 'https://api.openweathermap.org/data/2.5/',
       query: '',
       weather: {},
+      error:''
     }
   },
   methods: {
@@ -68,7 +59,10 @@ export default {
     },
     setResults(results) {
       this.weather = results;
+      //set the query back to empty so that it automatically clears search input.
       this.query = '';
+      //If location is not found, assigns message, otherwise it remains empty. 
+      this.error = results.message ? results.message : '';
       // console.log(results);
     },
     dateBuilder() {
@@ -190,5 +184,22 @@ main {
   font-weight: 700;
   font-style: italic;
   text-shadow: 3px 6px rgba(0,0,0,0.25);;
+}
+
+.error {
+  text-align: center;
+  color: #FFF;
+  font-size: 48px;
+  font-weight: 700;
+  font-style: italic;
+  text-shadow: 3px 6px rgba(0,0,0,0.25);;
+}
+
+.suggestion {
+  color: #FFF;
+  font-size: 20px;
+  font-weight: 300;
+  font-style: italic;
+  text-align: center;
 }
 </style>
