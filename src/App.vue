@@ -14,7 +14,7 @@
       </div>
 
       <div class="error" v-if="typeof error != 'undefined'">{{ error }}</div>
-      <div class="suggestion" v-if="error.length > 0">"Was there a typo?"</div>
+      <div class="suggestion" v-if="error.length > 0">(Was there a typo?)</div>
 
       <div class="weather-wrap" v-if="typeof weather.main != 'undefined'">
         <div class="location-box">
