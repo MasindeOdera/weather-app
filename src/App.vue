@@ -38,6 +38,18 @@
 
 export default {
   name: 'App',
+  metaInfo() {
+        return { 
+            title: "Weather App - Insert a location to discover the forecast.",
+            meta: [
+                { name: 'description', content:  'Weather App was developed with Vue.js using the OpenWeather API. Input a location to get real-time forecast.'},
+                { property: 'og:title', content: "Weather App - Insert a location to discover the forecast."},
+                { property: 'og:site_name', content: 'WeatherApp'},
+                {property: 'og:type', content: 'website'},    
+                {name: 'robots', content: 'index,follow'} 
+            ]
+        }
+    },
   data() {
     return {
       api_key: '2dc9abfe077c677cb92a5afcea396764',
