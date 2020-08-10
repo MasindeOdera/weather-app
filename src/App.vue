@@ -25,8 +25,15 @@
         <div class="weather-box">
           <div class="temp">{{ Math.round(weather.main.temp) }}°c</div>
           <div class="weather">{{ weather.weather[0].main }}</div>
-          <div class="feels">Max: {{ Math.round(weather.main.temp_max) }}°c</div>
-          <div class="feels">Min: {{ Math.round(weather.main.temp_min) }}°c</div>
+          <div class="report">
+            <div class="icon">
+              <img :src="icon" alt="Weather Icon" width="90" height="90">
+            </div>
+            <div class="feels">
+              <span>Max: {{ Math.round(weather.main.temp_max) }}°c</span>
+              <span>Min: {{ Math.round(weather.main.temp_min) }}°c</span>
+            </div>
+          </div>
           <div class="hint">Searching for another <b>{{ weather.name }}</b>? Add a comma followed by the country code.</div>
         </div>
       </div>
@@ -57,7 +64,10 @@ export default {
       url_base: 'https://api.openweathermap.org/data/2.5/',
       query: '',
       weather: {},
-      error:''
+      error:'',
+      icon:'',
+      iconStart: 'http://openweathermap.org/img/wn/',
+      iconEnd: '@2x.png'
     }
   },
   methods: {
@@ -71,9 +81,15 @@ export default {
       }
     },
     setResults(results) {
+      //Assign fetched results to weather.
       this.weather = results;
+
+      //If the fetch returns data, then create the url to get the icon.
+      this.icon = results ? this.iconStart + results.weather[0].icon + this.iconEnd : '';
+
       //set the query back to empty so that it automatically clears search input.
       this.query = '';
+
       //If location is not found, assigns message, otherwise it remains empty. 
       this.error = results.message ? results.message : '';
       // console.log(results);
@@ -197,6 +213,25 @@ main {
   font-weight: 700;
   font-style: italic;
   text-shadow: 3px 6px rgba(0,0,0,0.25);;
+}
+
+div.report {
+  width: 50%;
+  margin: auto;
+  display: inline-flex;
+  vertical-align: middle;
+  justify-content: center;
+}
+
+div.feels {
+  vertical-align: middle;
+  margin-top: 1.4rem;
+  text-align: left;
+}
+
+div.feels span {
+  display: block;
+  width: 130px;
 }
 
 .error {
