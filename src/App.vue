@@ -85,7 +85,7 @@ export default {
       this.weather = results;
 
       //If the fetch returns data, then create the url to get the icon.
-      this.icon = results ? this.iconStart + results.weather[0].icon + this.iconEnd : '';
+      this.icon = results.cod !== '404' ? this.iconStart + results.weather[0].icon + this.iconEnd : '';
 
       //set the query back to empty so that it automatically clears search input.
       this.query = '';
